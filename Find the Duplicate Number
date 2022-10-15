@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+class Solution {
+public:
+    int findDuplicate1(int nums[],int n) {
+    
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                if(nums[i]==nums[j]){
+                cout<<nums[i];
+                }
+            }
+            // if(i==n-1){
+            //   cout<<list ;;
+            // }
+        }
+    }
+};
+
+    int main(){
+        int n=5;
+        int arr[n];
+    for(int i=0;i<5;i++){
+    cin>>arr[i];
+    }
+    Solution s;
+        s.findDuplicate1(arr,n);
+    
+return 0;
+}
