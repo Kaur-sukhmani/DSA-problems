@@ -1,0 +1,199 @@
+//linked list
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node{
+	int data;
+	struct node *next;
+
+};
+ 	struct node *head;
+
+void insertbeg(){
+	struct node *ptr;
+	int item;
+    ptr=(struct node *) malloc(sizeof(struct node *));
+    if(ptr == NULL){
+    	cout<<"\n overflow";
+    	return ;
+	}
+	else {
+		cout<<"\n enter the data";
+		cin>>item;
+		ptr->data=item;
+		ptr->next=head;
+		head = ptr;
+	}
+}
+void insertend(){
+	int item;
+		struct node *ptr,*newnode;
+		ptr=head;
+		newnode=(struct node *) malloc(sizeof(struct node *));
+		if(ptr==NULL){
+		cout<<"\n overflow";
+	}
+       	cout<<"\n enter the data";
+		cin>>item;
+		newnode->data=item;
+		while(ptr->next!=NULL){
+			ptr=ptr->next;
+		}
+			ptr->next=newnode;
+			newnode->next=NULL;	
+}
+void randominsert(){
+	int n,loc,item;
+	struct node *newnode;
+	newnode=(struct node *) malloc(sizeof(struct node *));
+	struct node *ptr;
+ 	ptr=head;
+	if(ptr==NULL){
+		cout<<"\n overflow";
+	}
+	cout<<"\nEnter element value";  
+    cin>>item;  
+        newnode->data = item;  
+	cout<<"\n enter the location value";
+	cin>>loc;
+	ptr=head;
+	while(ptr!=NULL){
+		if(ptr->data==loc){
+			break;
+		}
+		ptr=ptr->next;
+	}
+		newnode->next = ptr->next;
+		ptr->next = newnode;
+		printf("\n Node inserted Successfully");
+}
+ void display(){
+ 	struct node *ptr;
+ 	ptr=head;
+ 	if(ptr==NULL){
+ 		cout<<"\n return ";
+	 }
+	 else{
+	 	cout<<"\n data=";
+	 	while(ptr!=NULL){
+	 		cout<<"\n"<<ptr->data;
+	 		ptr=ptr->next;
+		 }
+	 }
+ }
+ void search(){
+    int element,i=1;
+    struct node *ptr;
+    ptr=(struct node *)malloc(sizeof(struct node *));
+    ptr=head;
+    if(ptr==NULL){
+        cout<<"\n OVERFLOW";
+    }
+    cout<<"\n enter the element you want to search";
+    cin>>element;
+    
+    while(ptr!=NULL){
+        if(ptr->data==element){
+            cout<<"\n element found at "<<i;
+            break;
+        }
+        ptr=ptr->next;
+        i++;
+    }
+    if(ptr->next==NULL){
+        cout<<"\n element not found";
+    }
+}
+void begdelete(){
+	struct node *ptr;
+	if(head==NULL){
+     cout<<"\n underflow";
+	}
+	else{
+		ptr=head;
+		head=ptr->next;
+		cout<<"\n element deleted";
+	}
+}
+void enddelete(){
+	struct node *ptr,*prevptr;
+	if(head==NULL){
+		cout<<"\n underflow";
+	}
+	else{
+		ptr=head;
+		while(ptr->next!=NULL){
+			prevptr=ptr;
+			ptr=ptr->next;
+		}
+		prevptr->next=NULL;
+		cout<<"\n element deleted";
+	}
+}
+void randomdelete(){
+	int loc;
+	struct node *ptr,*prevptr;
+	if(head==NULL){
+		cout<<"\n underflow";
+	}
+	else{
+	cout<<"\n enter the element to delete";
+	cin>>loc;
+	ptr=head;
+	while(ptr->data!=loc){
+		prevptr=ptr;
+		ptr=ptr->next;
+	}
+	prevptr->next=ptr->next;
+	cout<<"\n element deleted";
+}
+	
+}
+int main(){
+	int n ;
+	while(true){
+	
+	cout<<"\n 1.insertion at beg";
+	cout<<"\n 2.insertion at end";
+	cout<<"\n 3.random insert";
+	cout<<"\n 4.display";
+	cout<<"\n 5.search";
+	cout<<"\n 6.delete at beg";
+	cout<<"\n 7.delete at end";
+	cout<<"\n 8.random delete";
+	cout<<"\n 9.exit";
+	
+	cout<<"\n enter any number";
+	cin>>n;
+	switch(n){
+		case 1:
+			insertbeg();
+			break;
+		case 2:
+			insertend();
+			break;
+        case 3:
+        	randominsert();
+        	break;
+		case 4:
+			display();
+			break;
+		case 5:
+			search();
+			break;
+		case 6:
+			begdelete();
+			break;
+		case 7:
+			enddelete();
+			break;
+		case 8:
+			randomdelete();
+			break;
+		case 9:
+			exit(0);
+			default:
+				cout<<"\nthe number is not present";}
+	}
+	
+}
