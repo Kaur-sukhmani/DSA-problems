@@ -1,0 +1,171 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node{
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+struct node *head;
+void insertbeg(){
+	int item;
+	struct node *ptr;
+	ptr=(struct node *)malloc(sizeof(struct node ));
+    if(ptr==NULL)
+ {
+	cout<<"\n overflow and return";
+}
+		cout<<"\n enter the data";
+		cin>>item;
+	
+			if(head==NULL){
+			ptr->next=NULL;
+			ptr->prev=NULL;
+			//storing item in the info
+			ptr->data=item;
+			head=ptr;
+		}
+		else{
+			
+			//updating the prev of the first node 
+		head->prev=ptr;
+		//updating teh next of the new node
+		ptr->next=head;
+		//updating the prev of the new node 
+		ptr->prev=NULL;
+//updating the head ,pointing to the new node
+		head=ptr;
+	}
+}
+void insertend(){
+	int item;
+	struct node *ptr,*newnode;
+		newnode=(struct node *)malloc(sizeof(struct node ));
+	ptr=(struct node *)malloc(sizeof(struct node ));
+    if(newnode==NULL)
+ {
+	cout<<"\n overflow and return";
+}
+else{
+    cout<<"\n enter the data";
+		cin>>item;
+	newnode->data=item;  
+			if(head==NULL){
+			ptr->next=NULL;
+			ptr->prev=NULL;
+			head=ptr;
+						}
+		else{
+		    ptr=head;
+		    while(ptr->next!=NULL){
+		        ptr=ptr->next;
+		       		    }
+		       		    ptr->next=newnode;
+		       		newnode->prev=ptr;
+		       		newnode->next=NULL;
+		       	
+		       			
+		       		cout<<"\n element inserted";
+		       		
+		       		
+		}
+						
+}
+}
+void randominsert(){
+	int item;
+	struct node *ptr,*newnode;
+		newnode=(struct node *)malloc(sizeof(struct node ));
+	ptr=(struct node *)malloc(sizeof(struct node ));
+    if(newnode==NULL)
+ {
+	cout<<"\n overflow and return";
+}
+else{
+     cout<<"\n enter the data";
+		cin>>item;
+			if(head==NULL){
+			ptr->next=NULL;
+			ptr->prev=NULL;
+			head=ptr;}
+			else{
+			    int loc;
+			    cout<<"\n enter the location you want to insert";
+			    cin>>loc;
+			    ptr=head;
+			    while(ptr->next!=NULL){
+	            if(ptr->data==loc){
+	                break;
+	            }
+			        ptr=ptr->next;
+			    }
+			    	newnode->data=item;  
+			    	ptr->next=newnode;
+			    	newnode->prev=ptr;
+			    	newnode->next=ptr->next;
+			    
+			}
+			cout<<"\n element insert";
+}
+}
+    void display(){
+	struct node *ptr;
+		ptr=head;
+ 	if(ptr==NULL){
+ 		cout<<"\n return ";
+	 }
+	 else{
+	cout<<"\n the elements are:";
+	    ptr=head;
+	    while(ptr!=NULL)
+		{
+	    	cout<<"\n"<<ptr->data;
+	    	ptr=ptr->next;
+		}
+}
+        
+    }
+int main(){
+	int n ;
+	while(true){
+	
+	cout<<"\n 1.insertion at beg";
+	cout<<"\n 2.insertion at end";
+		cout<<"\n 3.insertion randomly";
+	cout<<"\n 4.display";
+	cout<<"\n 9.exit";
+	
+	cout<<"\n enter any number";
+	cin>>n;
+	switch(n){
+		case 1:
+			insertbeg();
+			break;
+		case 2:
+			insertend();
+			break;
+        case 3:
+        	randominsert();
+        	break;
+		case 4:
+			display();
+			break;
+//		case 5:
+//			search();
+//			break;
+//		case 6:
+//			begdelete();
+//			break;
+//		case 7:
+//			enddelete();
+//			break;
+//		case 8:
+//			randomdelete();
+//			break;
+		case 9:
+			exit(0);
+			default:
+				cout<<"\nthe number is not present";}
+	}
+	
+}
