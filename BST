@@ -1,0 +1,164 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node{
+	int value;
+	struct node *left;
+	struct node *right;
+}*root;
+class BST
+{
+    public: 
+        void insert(node *tree, node *newnode){
+        	if(root==NULL){
+        		root = new node;
+        		root->value=newnode->value;
+        		root->left=NULL;
+				root->right=NULL;
+        		cout<<"\n root node added";
+        		return;
+			}
+		if(tree->value == newnode->value)
+		{
+			cout<<"\n element already in the list"<<endl;
+			return;
+		}
+		if(tree->value > newnode->value)
+			{
+				if(tree->left != NULL)
+				{
+            		insert(tree->left, newnode);	
+				}
+				else
+				{
+		            tree->left = newnode;
+		            (tree->left)->left = NULL;
+		            (tree->left)->right = NULL;
+		            cout<<"Node Added To Left"<<endl;
+		            return;
+		        }
+			}
+	else{
+        if (tree->right != NULL)
+        {
+            insert(tree->right, newnode);
+        }
+        else
+        {
+            tree->right = newnode;
+            (tree->right)->left = NULL;
+            (tree->right)->right = NULL;
+            cout<<"Node Added To Right"<<endl;
+            return;
+           }	
+    	}
+	}
+   
+   
+   	void display(node *ptr, int level )
+	   {	
+    int i;
+    if (ptr != NULL)
+         {
+        display(ptr->right, level+1);
+        cout<<endl;
+        if(ptr == root){
+        	cout<<"root=";
+		}
+		else{
+			for(i=0;i<level;i++)
+			cout<<"\t";
+		}
+        cout<<ptr->value;
+        display(ptr->left, level+1);
+     }
+}
+void preorder(node *ptr){
+	if(root==NULL){
+		cout<<"\n tree is empty";
+		return ;
+	}
+	if(ptr!=NULL){
+		cout<<ptr->value<<endl;
+		preorder(ptr->left);
+		preorder(ptr->right);
+	}
+}
+void inorder(node *ptr){
+	if(root==NULL){
+		cout<<"\n tree is empty";
+		return ;
+	}
+	if(ptr!=NULL){
+		inorder(ptr->left);
+		cout<<ptr->value<<endl;
+		inorder(ptr->right);
+	}
+}
+void postorder(node *ptr){
+	if(root==NULL){
+		cout<<"\n tree is empty";
+		return ;
+	}
+	if(ptr!=NULL){
+		postorder(ptr->left);
+		postorder(ptr->right);
+		cout<<ptr->value<<endl;
+		
+	}
+}
+void deletenode()	
+       BST()
+        {
+            root = NULL;
+    	}
+};
+int main()
+{
+	    BST obj;
+    node *temp;
+	int choice;
+	while(true){
+	cout<<"\n 1. isnert";
+	cout<<"\n 2.display";
+	cout<<"\n 3.preorder";
+	cout<<"\n 4.inorder";
+	cout<<"\n 5.postorder";
+	cout<<"\n 6.delete";
+	cout<<"\n 7.exit";
+	cout<<"\nenter your choice ";
+	cin>>choice;
+	switch(choice)
+	{
+		case 1:
+             temp = new node;
+              cout<<"Enter the number to be inserted : ";
+	          cin>>temp->value;
+            obj.insert(root, temp);
+            break;
+        case 2:
+        	cout<<"\n display="<<endl;
+               obj.display(root,1);
+               cout<<endl;
+               break;
+        case 3:
+        	cout<<"\n preorder:";
+        	obj.preorder(root);
+        	break;
+        case 4:
+        	cout<<"\n inorder:";
+        	obj.inorder(root);
+        	break;
+        case 5:
+        	cout<<"\n postorder:";
+        	obj.postorder(root);
+        	break;
+        
+        case 6:
+            	exit(0);
+        default:
+           	cout<<"\n number not present";
+	}
+}
+return 0;
+}
