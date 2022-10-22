@@ -1,0 +1,98 @@
+#include<iostream>
+using namespace std;
+class minheap{
+	int *harr;//pointer to object
+	int capacity;//max possible size of min  heap
+	int heap_size;//current number of elements in the min heap
+	public:
+		minheap(int capacity){
+			heap_size=0;
+			harr=new int[capacity];
+		}
+		int parent(int i) 
+		{ 
+		    return (i-1)/2;
+		 }
+  
+    // to get index of left child of node at index i
+    int left(int i)
+    {
+        return (2*i + 1);
+     }
+  
+    // to get index of right child of node at index i
+    int right(int i)
+    { 
+        return (2*i + 2);
+    }
+
+	void swap(int *a,int *b){
+		    int temp;
+		    temp=*a;
+		    *a=*b;
+		    *b=temp;
+		}
+	void minheapify(int i){
+			int l=left(i);
+			int r=right(i);
+			int smallest=i;
+			if(l<heap_size && harr[l]<harr[i]){
+			    smallest=l;
+			}
+			if(r<heap_size && harr[r]<harr[i]){
+			    smallest=r;
+			}
+			if(smallest!=i){
+			    swap(&harr[i],&harr[smallest]);
+			    minheapify(smallest);
+			}
+		}
+	void insert(int value){
+	    if(heap_size==capacity){
+	        cout<<"\n overflow and return";
+	    }
+	    heap_size++;
+	    int i=heap_size-1;
+	    harr[i]=value;
+	    if(i!=0 && harr[parent(i)]>harr[i]){
+	        swap(&harr[parent(i)],&harr[i]);
+	        i=parent(i);
+	    }
+	}
+	void display(){
+	    if(heap_size==0){
+	        cout<<"\n  tree is empty";
+	    }
+	    cout<<"\n the elements are";
+	   for(int i=0;i<heap_size;i++){
+	       cout<<"\n"<<harr[i];
+	   }
+	}
+};
+int main(){
+    int choose,data;
+    minheap obj(3);
+    while(true){
+        cout<<"\n 1.insert";
+        cout<<"\n 2.display";
+        cout<<"\n exit";
+        cout<<"\n enter any number";
+        cin>>choose;
+        switch(choose){
+            case 1:
+            cout<<"\n enter the data";
+            cin>>data;
+             obj.insert(data);
+             break;
+            case 2:
+             obj.display();
+             break;
+            case 4:
+             exit(0);
+            default:
+            cout<<"\n number not present";
+        }
+        
+    }
+    return 0;
+}
