@@ -1,0 +1,61 @@
+//binary tree operations
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node{
+	int data;
+	struct node *left,*right;
+};
+struct node *newnode(int data){
+	struct node *tmp=(struct node *)malloc(sizeof(struct node ));
+	tmp->data=data;
+	tmp->left=tmp->right=NULL;
+};
+void print(struct node *ptr){
+	if(ptr!=NULL){
+		print(ptr->left);
+		cout<<"\n"<<ptr->data;
+		print(ptr->right);
+	}
+}
+struct node* insertnode(struct node *node,int data){
+	if(node==NULL){
+		return newnode(data);
+	}
+	if(data < node->data){
+		node->left=insertnode(node->left,data);
+	} 
+	else if(data > node->data){
+		node->right = insertnode(node->right,data);
+	}
+	return node;
+}
+int main(){
+	struct node *ptr=NULL;
+//	ptr=insertnode(ptr,0);
+			int data;
+	int n;
+	while(true)
+	{
+		cout<<"\n 1.insert";
+		cout<<"\n 2.print";
+		cout<<"\n 3.exit";
+		cout<<"\n enter any value";
+		cin>>n;
+		switch(n){
+			case 1: 
+			cout<<"Enter data";
+			cin>>data;
+			ptr=insertnode(ptr,data);
+			break;
+			case 2:
+				print(ptr);
+				break;
+			case 3:
+				exit(0);
+			default:
+				cout<<"\n number not present";
+			}
+		}
+	return 0;
+}
