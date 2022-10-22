@@ -1,0 +1,118 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct node{
+	int data;
+	struct node *next;
+	struct node  *prev; 
+};
+	struct node  *head=NULL;
+	struct node  *tail=NULL;
+	void insert(){
+		struct node  *newnode;
+		newnode=(struct node*)malloc(sizeof(struct node));
+		int item;
+		cout<<"\n enter the item";
+		cin>>item;
+		newnode->data=item;
+		
+		if(head==NULL){
+			tail=head=newnode;
+			head->prev=NULL;
+			tail->next=NULL;
+		}
+	else{
+		tail->next=newnode;
+		newnode->prev=tail;
+		tail=newnode;
+		newnode->next=NULL;
+	}
+	
+	} 
+	void displaybeg(){
+		int i;
+			struct node  *ptr;
+		if(head==NULL){
+			cout<<"\n list is empty";
+		}
+		cout<<"\n the elements are";
+			ptr=head;
+			while(ptr!=NULL){
+				cout<<"\n"<<ptr->data;
+				ptr=ptr->next;
+			}
+	}
+	void displayend(){
+		int i;
+			struct node  *ptr;
+		if(head==NULL){
+			cout<<"\n list is empty";
+		}
+		cout<<"\n the elements are";
+	ptr=tail;
+	while(ptr!=NULL){
+		cout<<"\n"<<ptr->data;
+		ptr=ptr->prev;
+	}
+}
+void deletebeg(){
+	struct node *ptr;
+	if(head==NULL){
+     cout<<"\n underflow";
+	}
+	else{
+		ptr=head;
+		head=ptr->next;
+		head->prev=NULL;
+		cout<<"\n element deleted";
+	}
+}
+void enddelete(){
+	struct node *ptr;
+	if(tail==head){
+         head=NULL;
+         tail=NULL;
+	
+     }
+     else{
+         cout<<"\n element deleted"<<tail->data;
+         tail=tail->prev;
+         tail->next=NULL;
+     }
+	}
+int main(){
+	int n ;
+	while(true){
+	
+	cout<<"\n 1.insertion at beg";
+	cout<<"\n 2.display from beg";
+	cout<<"\n 3. display from end";
+	cout<<"\n 4.deleted from beg";
+	cout<<"\n 5.delete from end";
+	cout<<"\n 6.exit";
+	
+	cout<<"\n enter any number";
+	cin>>n;
+	switch(n){
+		case 1:
+			insert();
+			break;
+		case 2:
+			displaybeg();
+			break;
+		case 3:
+		  displayend();
+		  break;
+		case 4:
+		      deletebeg();
+		      break;
+		case 5:
+		 enddelete();
+		 break;
+		 case 6:
+			exit(0);
+			default:
+				cout<<"\nthe number is not present";
+				}}
+	}
+	
