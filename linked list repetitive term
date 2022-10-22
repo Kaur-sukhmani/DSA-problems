@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+// Write a function that counts the number of times a given int occurs in a Linked List
+#include<stdlib.h>
+struct node{
+	int data;
+	struct node *next;
+
+};
+ 	struct node *head;
+
+void linkedlist(){
+    int count=0;
+    struct node *ptr;
+	int item;
+    ptr=(struct node *) malloc(sizeof(struct node *));
+    ptr=head;
+    int n;
+    cout<<"\n enter the number";
+    cin>>n;
+    
+    while(ptr!=NULL){
+        if(ptr->data==n){
+        count++;
+        }ptr=ptr->next;
+    }
+    cout<<"\nelement "<<n<<" present"<<count<<" times";
+}
+void insertbeg(){
+	struct node *ptr;
+	int item;
+    ptr=(struct node *) malloc(sizeof(struct node *));
+    if(ptr == NULL){
+    	cout<<"\n overflow";
+    	return ;
+	}
+	else {
+		cout<<"\n enter the data";
+		cin>>item;
+		ptr->data=item;
+		ptr->next=head;
+		head = ptr;
+	}
+}
+void display(){
+ 	struct node *ptr;
+ 	ptr=head;
+ 	if(ptr==NULL){
+ 		cout<<"\n return ";
+	 }
+	 else{
+	 	cout<<"\n data=";
+	 	while(ptr!=NULL){
+	 		cout<<"\n"<<ptr->data;
+	 		ptr=ptr->next;
+		 }
+	 }
+ }
+int main(){
+    int n ;
+	while(true){
+	
+	cout<<"\n 1.insertion at beg";
+	cout<<"\n 2.element ";
+// 	cout<<"\n 3.random insert";
+	cout<<"\n 4.display";
+// 	cout<<"\n 5.search";
+// 	cout<<"\n 6.delete at beg";
+// 	cout<<"\n 7.delete at end";
+// 	cout<<"\n 8.random delete";
+	cout<<"\n 9.exit";
+	
+	cout<<"\n enter any number";
+	cin>>n;
+	switch(n){
+		case 1:
+			insertbeg();
+			break;
+		case 2:
+			linkedlist();
+			break;
+//         case 3:
+//         	randominsert();
+//         	break;
+		case 4:
+			display();
+			break;
+// 		case 5:
+// 			search();
+// 			break;
+// 		case 6:
+// 			begdelete();
+// 			break;
+// 		case 7:
+// 			enddelete();
+// 			break;
+// 		case 8:
+// 			randomdelete();
+// 			break;
+		case 9:
+			exit(0);
+			default:
+				cout<<"\nthe number is not present";}
+	}
+	
+}
