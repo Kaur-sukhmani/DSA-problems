@@ -1,0 +1,114 @@
+//program of graph using adjacency matrix
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+int vertArr[20][20];
+int n;
+int a[20][20],q[20],visited[20],f=0,r=-1;
+int count = 0;
+void display(){
+	int i,j;
+	cout<<"\n Adjacency Matrix of Given Graph IS : \n";
+	for(i=0;i<n;i++)
+	{
+			cout<<"       "<<i;
+	}
+	for(i=0;i<n;i++){
+		cout<<"\n "<<i<<" : ";
+		for(j=0;j<n;j++){
+			cout<<"   "<<vertArr[i][j];
+		}
+		cout<<"\n";
+	}
+}
+void add_edge(int u,int v){
+	vertArr[u][v]=1;
+	vertArr[v][u]=1;
+}
+void degree(int vertex){
+	int deg=0;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			if(i==vertex){
+				deg=deg+vertArr[i][j];
+			}
+		}
+	}
+	cout<<"\n Degree of the given vertex is: "<<deg;
+}
+void BFS(int v){
+for(int i=0;i<n;i++){
+		if(vertArr[v][i] && !visited[i]){
+			q[++r]=i;
+			}
+			if(f<=r){
+				visited[q[f]]=1;
+				BFS(q[f++]);
+			}	
+		}
+}
+void visit(){
+	for(int i=0;i<n;i++){
+		q[i]=0;
+		visited[i]=0;
+	}
+}
+main()
+{
+	int v,vert;
+	cout<<"Enter number of vertices in the graph: ";
+	cin>>n;
+	int a,b;
+	//initialize matrix here
+	int ch;
+	while(true)
+	{
+		cout<<"\n 1. Insert an edge: ";
+		cout<<"\n 2. Display Matrix: ";
+		cout<<"\n 3. Count Degree of all vertices in the matrix: ";
+		cout<<"\n 4. BFS";
+		cout<<"\n 5. DFS";
+		cout<<"\n 4. Exit";
+		cout<<"\n Enter Your Choice: ";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:
+				cout<<"\n enter the row and column";
+	            cin>>a>>b;
+				add_edge(a,b);
+				cout<<"\n edge inserted";
+				break;
+			case 2:
+				display();
+				break;
+			case 3:
+				cout<<"\n enter the vertex to calculate degree";
+				cin>>v;
+				degree(v);
+				break;
+			case 4:
+			    visit();
+			    cout<<"\n enter the starting vertex";
+			    cin>>vert;
+			    BFS(vert);
+			    cout<<"\n the node reachable :";
+			    for(int i=0;i<n;i++){
+			    	if(visited[i])
+			    		cout<<i<<"    ";
+			    	else{
+			    		cout<<"\n BFS not reachable";
+					}
+				}
+				break;
+			case 5:
+				break;
+			case 6:
+				cout<<"\n THANK YOU";
+				exit(0);
+			default:
+				cout<<"\n INVALID OPTION";
+		}
+	}
+	return 0;
+}
