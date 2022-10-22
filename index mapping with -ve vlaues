@@ -1,0 +1,42 @@
+//index mapping with negative value allowed
+#include<iostream>
+#include <bits/stdc++.h>
+#define MAX 1000
+using namespace std;
+bool has[MAX+1][2];
+bool search(int x){
+    if(x>=0){
+        if(has[x][0]==1)
+        return true;
+        else 
+        return false;
+    }
+    //if the value is negative then take absolute value
+    x=abs(x);
+    if(has[x][1]==1)
+	        return true; 
+    return false;
+}
+void insert(int arr[],int n){
+  for(int i=0;i<n;i++){
+      if(arr[i] >= 0){
+          has[arr[i]][0]=1;
+         }
+         else
+         has[abs(arr[i])][1]=1;
+      
+  }
+}
+ int main(){
+      int arr[] = {-4,-3,-6,-7,-8,9};
+        int n=sizeof(arr)/sizeof(arr[0]);
+        insert(arr,n);
+        int x=9;
+        if(search(x) == true){
+            cout<<"\n present";
+        }
+        else{
+            cout<<"\n not present";
+        }
+        return 0;
+    }
