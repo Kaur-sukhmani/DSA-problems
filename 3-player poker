@@ -1,0 +1,38 @@
+//3 player playing poker 
+#include<stdio.h>
+int main()
+{
+	char ch,n,P1,P2,P3;
+	printf("\n ************** WELCOME TO POKER GAME ************************** \n");
+	printf("\n A. ROYAL FLUSH");
+	printf("\n B. STRAIGHT FLUSH");
+	printf("\n C. FOUR OF A KIND");
+	printf("\n D. FULL HOUSE");
+	printf("\n E. STRAIGHT");
+	printf("\n F. THREE OF A KIND");
+	printf("\n G. FULL HOUSE");
+	printf("\n H. TWO PAIR");
+	printf("\n I. PAIR");
+    printf("\n J. HIGH CARD");
+	printf("\n PLAYER 1, Pick your hand from A-J \n");
+	 scanf("%c",&P1);
+		printf("\n PLAYER 2, Pick your hand from A-J \n");
+	scanf("%c",&P2);
+	scanf("%c",&P2);
+		printf("\n PLAYER 3, Pick your hand from A-J \n");
+		scanf("%c",&P3);
+		scanf("%c",&P3);
+	
+	printf("\n Player 1 card: %c",P1);
+	printf("\n Player 2 card: %c",P2);
+	printf("\n Player 3 card: %c",P3);
+	
+    if (P1<P2 && P1<P3)
+    printf("P1 WINS");
+    else if(P2<P1 && P2<P3)
+    printf("P2 WINS");
+     else
+    printf("P3 WINS ");
+    return 0;
+	
+}
