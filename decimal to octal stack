@@ -1,0 +1,65 @@
+//STACK
+#include<iostream>
+using namespace std;
+int const MAX=20;
+int stack[MAX];
+int TOP=-1;
+void push(int item){
+	if(TOP==MAX-1){
+		cout<<"\n overflow and return";
+	}
+	else{
+	    TOP++;
+		stack[TOP]=item;
+	}
+	
+}
+void pop(){
+	if(TOP==-1){
+		cout<<"\n underflow and return";
+	}
+	else{
+		int item;
+		item=stack[TOP];
+		cout<<"\n the item deleted is"<<item;
+		TOP--;
+	}
+}
+void display(){
+	int j;
+	cout<<"\n the element in the stack are:";
+	for(j=TOP;j>=0;j--){
+		cout<<stack[j];
+	}	
+}
+int peek()
+{
+	return stack[TOP];
+}
+int isEmpty()
+{
+	if(TOP==-1)
+	return 1;
+	else
+	return 0;
+}
+int isfull(){
+	if(TOP==MAX-1)
+      return 1;
+	else
+	   return 0;
+	
+}
+int main(){
+	int n;
+	cout<<"\n enter any number in decimal:";
+	cin>>n;
+	for(int i=n;i>0;i=i/8){
+		int mod=i%8;
+		push(mod);
+	}
+	cout<<"\n octal Equivalent = ";
+	display();  
+       
+		return 0;
+}
