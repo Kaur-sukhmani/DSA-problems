@@ -1,0 +1,24 @@
+//search an element in matrix
+#include<iostream>
+using namespace std;
+void search(int matrix[3][3]){
+    int item;
+    cout<<"\n enter the value you want to search";
+    cin>>item;
+    
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(matrix[i][j]==item){
+                cout<<"\n element found at row "<<i+1<<"\n and column "<<j+1<<endl;
+            }
+            if(matrix[3][3]){
+                cout<<"\n element not found ";
+        }
+    }
+}
+}
+int main(){
+    int matrix[3][3]={{1,2,3},{5,4,5},{6,7,8}};
+    search(matrix);
+    return 0;
+}
