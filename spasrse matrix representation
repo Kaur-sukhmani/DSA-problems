@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+//sparse matrix 
+//array representation 
+int main(){
+    int r,c;
+    cout<<"\n enter the no of rows and columns";
+    cin>>r>>c;
+    int matrix[r][c];
+    cout<<"\n enter the elements in the matrix";
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            cin>>matrix[i][j];
+        }
+    }
+    cout<<"\n the matrix is:";
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            cout<<" "<<matrix[i][j];
+        }
+        cout<<"\n";
+    }
+    
+    int count=0;
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(matrix[i][j]!=0){
+        count++;   }   
+        }
+    }
+    int sparse[count][3];
+    //  sparse[0][0]=r;
+    //  sparse[1][0]=c;
+    //  sparse[2][0]=count;
+     int k=0;
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++){
+            if(matrix[i][j]!=0){
+                sparse[k][0]=i;
+                sparse[k][1]=j;
+                sparse[k][2]=matrix[i][j];
+                k++;
+            }
+        }
+    }
+    cout<<"\n the spasrse matrix representation";
+    for(int i=0;i<count;i++){
+        for(int j=0;j<3;j++){
+            cout<<" "<<sparse[i][j];
+        }
+        cout<<"\n";
+    }
+    return 0;
+}
