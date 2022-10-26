@@ -1,0 +1,101 @@
+#include<iostream>
+using namespace std;
+struct node{
+  int data;
+  struct node *next;
+};
+struct node *top;
+void push(){
+    struct node* ptr;
+    ptr=(struct node *)malloc(sizeof(struct node *));
+int element;
+cout<<"\n enter the num";
+cin>>element;
+    // if(top==NULL){
+    //     ptr->data=element;
+    //     ptr->next=NULL;
+    // }
+    // else{
+        ptr->data=element;
+        ptr->next=top;
+        top=ptr;
+    // }
+}
+void pop(){
+    struct node *ptr;
+    ptr=(struct node*)malloc(sizeof(struct node*));
+    if(top==NULL){
+        cout<<"\n underflow";
+    }
+    else{
+       top=top->next;
+       cout<<"\n element deleted";
+    }
+    
+}
+void peek(){
+    cout<<"\n the element at the top is"<<top->data;
+}
+void display(){
+    struct node *ptr;
+    ptr=(struct node*)malloc(sizeof(struct node*));
+    ptr=top;
+    while(ptr!=NULL){
+        cout<<"\n"<<ptr->data;
+        ptr=ptr->next;
+    }
+}
+int main(){
+     int n;
+    while(true){
+    cout<<"\n 1.push";
+    cout<<"\n 2.pop";
+    cout<<"\n 3.peek";
+    // cout<<"\n 4.isempty";
+    // cout<<"\n 5.isfull";
+    cout<<"\n 6.display";
+    cout<<"\n 7.exit";
+    cout<<"\n enter any number";
+    cin>>n;
+    switch(n){
+        case 1:
+        cout<<"\n the element pushed is";
+        push();
+        break;
+        cout<<"\n the element poped";
+        case 2:
+        pop();
+        break;
+        // case 3:
+        // peek();
+        // break;
+        // case 4:
+        //  if(isfull()){
+        //     cout<<"\n the stack is full";
+        // }
+        // else{
+        //     cout<<"\n the stack is not full";
+        // }
+        // break;
+        // case 5:
+        // if(isempty()){
+        //     cout<<"\n the stack is empty";
+        // }
+        // else{
+        //     cout<<"\n the stack is not empty";
+        // }
+        // break;
+        case 6:
+        display();
+        break;
+        case 7:
+        exit(0);
+        break;
+        default:
+      cout<<"\n the number is not present ";
+        
+    }
+    }
+    return 0;
+
+}
