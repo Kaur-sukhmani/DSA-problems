@@ -1,0 +1,46 @@
+//spiral matrix
+#include<iostream>
+using namespace std;
+void spiralmatrix(int matrix[][]){
+    int top,bottom,left,right;
+    int direction=0;
+    top=0;bottom=n-1;left=0;right=n-1;
+    while(top<=bottom && left<=right){
+        if(direction==0){
+            for(int i=top;i<left;i++)
+           { cout<<mattrix[top][i];
+            top++;
+        }}
+        else if(direction==1){
+            for(int i=top;i<bottom;i++)
+          {  cout<<mattrix[i][right];
+            right--;
+        }}
+        else  if(direction==2){
+            for(int i=right;i>=left;i--)
+           { cout<<matrix[bottom][i]; 
+            bottom--;
+           }
+        }
+         else if(direction==3){
+            for(int i=bottom;i>=top;i++)
+           { cout<<matrix[i][left]; 
+            left++;
+           }
+        }
+        direction=(direction+1)%4;
+    }
+}
+int main(){
+    int matrix[r][c];
+    int r,c;
+    cout<<"\n enter the number of row and column";
+    cin>>r>>c;
+    int matrix[r][c];
+    cout<<"\n enter the elements";
+    cin>>matrix[r][c];
+    spiralmatrix(matrix[r][c]);
+    return 0;
+    
+    
+}
