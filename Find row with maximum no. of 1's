@@ -1,0 +1,49 @@
+//Find row with maximum no. of 1's
+#include<iostream>
+using namespace std;
+void max(int matrix[3][3]){
+    int row1=0,row2=0,row3=0;
+    int n1=0,n2=0,n3=0;
+        for(int j=0;j<3;j++){
+            if(matrix[0][j]==1){
+                row1++;
+              n1=n1+row1;
+            }
+        }
+    
+            cout<<"\n row 1 has "<<n1<<" number of 1";
+        for(int j=0;j<3;j++){
+            if(matrix[1][j]==1){
+                row2++;
+                n2=row2;
+            }
+        }
+            
+            cout<<"\n row 2 has "<<n2<<" number of 1";
+           
+        for(int j=0;j<3;j++){
+             if(matrix[2][j]==1){
+                row3++;
+                n3=row3;
+            }
+        }
+            
+            cout<<"\n row 3 has "<<n3<<" number of 1";
+
+    
+    if(row1>row2 && row1>row3){
+        cout<<"\n row with maximum no. of 1's is "<<n1;
+    }
+      else if(row2>row1 && row2>row3){
+        cout<<"\n row with maximum no. of 1's is "<<n2;
+    }
+else{
+        cout<<"\n row with maximum no. of 1's is "<<n3;
+    }
+}
+int main(){
+    int matrix[3][3]={{1, 3, 5},{2, 1, 1},{1, 1, 1}};
+    max(matrix);
+    return 0;
+    
+}
