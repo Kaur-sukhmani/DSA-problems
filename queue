@@ -1,0 +1,99 @@
+//queue
+#include<iostream>
+using namespace std;
+const int SIZE=5;
+int a[SIZE];
+int rear=-1;
+int front=-1;
+void enqueue(){
+		int item;
+    	cout<<"\n enter the item:";
+		cin>>item;
+	if(rear==SIZE-1){
+		cout<<"\n overflow and return";
+	}
+	else if(rear==-1 && front==-1){
+		rear=0;
+		front=0;
+	}
+	else{
+		rear++;
+	}
+			a[rear]=item;
+
+}
+void dequeue(){
+	if(front==-1){
+		cout<<"\n underflow and return";
+	}
+	else{
+		cout<<"\n Item deleted is:"<<a[front];
+	if(rear==0 && front==0){
+		rear=-1;
+		front=-1;
+	}
+	else {
+		front=front+1;
+	}
+}
+}
+void display(){
+	int i;
+	cout<<"\n the elements are;";
+	for(i=front;i<=rear;i++)
+	{
+		cout<<"\n"<<a[i];
+	}
+}
+int  isfull(){
+	if(rear==SIZE-1)
+	return 1;
+	else
+	return 0;
+}
+int isempty(){
+	if(front==-1)	
+    return 1;
+
+	else
+	return 0;
+}
+int main()
+{ int n;
+    for(;;){
+    	cout<<"\n 1.ENQUEUE";
+    	cout<<"\n 2.DEQUEUE";
+    	cout<<"\n 3.DISPLAY";
+    	cout<<"\n 4.ISFULL"; 
+    	cout<<"\n 5.ISEMPTY";
+    	cout<<"\n 6.EXIT";
+    	cout<<"\n enter any number:";
+    	cin>>n;
+    	switch(n){
+    		case 1:
+    			enqueue();
+    			break;
+    		case 2:
+    			dequeue();
+    			break;
+    	    case 3:
+    	    	display();
+    	    	break;
+    	    case 4:
+    	    	isfull();
+    	    	break;
+    	    case 5:
+    	    	isempty();
+    	    	break;
+    	    case 6:
+    	    	exit(0);
+    	    default:
+    	    	cout<<"\n the number is unavailable:";
+    	    
+    			
+		}
+	
+	}
+		return 0;
+	
+}
