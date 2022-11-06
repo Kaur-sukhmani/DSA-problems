@@ -1,0 +1,50 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+ 
+using namespace std; 
+
+
+bool findPair(int arr[], int size, int n);
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int l,n;
+        cin>>l>>n;
+        int arr[l];
+        for(int i=0;i<l;i++)
+            cin>>arr[i];
+        if(findPair(arr, l, n))
+            cout<<1<<endl;
+        else cout<<"-1"<<endl;
+    }
+    
+  
+    return 0;
+}
+// } Driver Code Ends
+
+
+bool findPair(int arr[], int size, int n){
+    //code
+    int count=-1;
+    int mid =(size-0)/2;
+    for(int i=0;i<mid;i++){
+        int k=arr[i]-n;
+        for(int j=mid;j<size;j++){
+            if(arr[j]==k){
+                if(count==-1){
+                    count=1;
+                }
+                else{
+                count++;}
+            }
+            // cout<<count;
+        }
+    }
+    return count;
+    
+}
