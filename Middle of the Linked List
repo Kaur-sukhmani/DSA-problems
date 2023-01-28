@@ -1,0 +1,33 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        //to find the midddle element in the linde
+      ListNode *slow;
+        ListNode *fast;
+        slow=head;
+        fast=head->next;
+        while(fast!=NULL){
+            fast=fast->next;
+            slow=slow->next;
+        }
+        ListNode *mid;
+        mid=slow;
+    slow->next=NULL;
+    ListNode *ptr= new ListNode();
+    while(ptr!=NULL){
+        ptr->val;
+        ptr=ptr->next;
+    }  
+    return NULL;
+    }
+};
