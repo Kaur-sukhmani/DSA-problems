@@ -1,0 +1,67 @@
+#include<iostream>
+using namespace std;
+// int maxsubarray(int A[],int low,int high){
+//     if (low==high){
+//         return A[low];
+//     }
+//     if(low<high){
+//         int mid=(low+high)/2;
+//       int leftarr =maxsubarray(A,low,mid);
+//       int rightarr=maxsubarray(A,mid+1,high);
+//         int crosssubarr=maxcrossusbarray(A,low,mid,high);
+//     }
+//     return maximum(leftarr,rightarr,crosssubarr)l
+// }
+int maximum(int a ,int b ,int c){
+    if (a>b && a>c){
+        return a;
+    }
+    else if (b>a && b>c){
+            return b;
+        }
+    
+    else
+        return c;
+    
+}
+int maxcrossusbarray(int A[],int low,int mid,int high)
+    {
+        int left_sum=0;
+        int sum=0;
+        for(int i=mid;i>=low;i--){
+            sum=sum+A[i];
+            if(sum>left_sum){
+                left_sum=sum;
+            }
+        }
+        int right_sum=0;
+        sum=0;
+       
+        for(int i=mid+1;i<high;i++){
+            sum=sum+A[i];
+            if(sum>right_sum){
+                right_sum=sum;
+            }
+        }
+        
+    return (left_sum+right_sum);
+    }
+    int maxsubarray(int A[],int low,int high){
+    if (low==high){
+        return A[low];
+    }
+    // if(low<high){
+        int mid=(low+high)/2;
+       int leftarr =maxsubarray(A,low,mid);
+       int rightarr=maxsubarray(A,mid+1,high);
+        int crosssubarr=maxcrossusbarray(A,low,mid,high);
+    // }
+    retu
+    rn maximum(leftarr,rightarr,crosssubarr);
+}
+int main(){
+    int A[]={-2,-3,4,-1,-2,1,5,-3};
+    int n=sizeof(A)/sizeof(A[0]);
+    maxsubarray(A,0,n);
+    
+}
