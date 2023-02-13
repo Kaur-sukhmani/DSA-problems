@@ -1,0 +1,54 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node *prev;
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+                this->prev = NULL;
+            }
+        };
+
+*****************************************************************/
+
+Node *sortedDll(Node *head, int k)
+{
+    // Write your code here
+    if(head==NULL){
+        return NULL;
+    }
+    priority_queue<int,vector<int>,greatest<int>> pq;
+    Node *newhead=NULL,*curr;
+    for(int i=0;i<=k&&head!=NULL,i++){
+        pq.push(head);
+        head=head->next;
+    }
+    while(!pq.empty()){
+    if(newhead==NULL){
+     newhead->data=pq.top();
+     newhead->next=NULL;
+     newhead->prev=NULL;
+     curr=newhead;
+    }
+else{
+    curr->next=pq.top();
+    pq.top()->prev=curr;
+    curr=pq.top();
+}
+pq.pop();
+if(head!=NULL){
+    pq.push(head);
+    head=head->next;
+}
+    }
+    curr->next=NULL;
+    return newhead;
+}
