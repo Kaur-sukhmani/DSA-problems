@@ -1,0 +1,29 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+struct activity{
+    int begin;
+    int end;
+};
+bool comp(activity a1,activity a2){
+  return(a1.end<a2.end);
+}
+void maxactivity(activity arr[],int n){
+     //sort activity usign comp function
+     sort(arr,arr+n,comp);
+     cout<<"selected activities are:"<<endl;
+     int i=0;
+     for(int j=1;j<n;j++){
+        if ((arr[j].begin)>=(arr[i].end)){
+         cout<<j;
+         i=j;
+        }
+     }
+
+}
+int main(){
+    activity arr[]={{5,9},{1,2},{3,4},{0,6},{5,7},{8,9}};
+    int n=6;
+    maxactivity(arr,n);
+    return 0;
+}
