@@ -1,0 +1,57 @@
+//Maximum Subarray Sum using Divide and Conquer algorithm
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+
+int cross_max_array(int A,int beg,int mid,int high){
+    int left_sum=0;
+    int max_left;
+    int sum=0;
+    for(int i=mid;i>=beg;i--){
+        sum=sum+A[i];
+        if (sum>left_sum){
+            left_sum=sum;
+            max_left=i;
+        }
+    }
+    int right_sum=0;
+    int max_right=0;
+    for(int j=mid+1;j<high;j++){
+     sum=sum+A[j];
+     if (sum>right_sum){
+        right_sum=sum;
+        max_right=j;
+     }
+    }
+   mid=(beg+high)/2;
+    return (max_left,max_right,right_sum+left_sum);
+     if (left_sum>right_sum && left_sum> cross_sum){
+        return maximum_sum_array(A,low,mid);
+    }
+    else if(left_sum<right_sum && right_sum> cross_sum){
+        return maximum_sum_array(A,mid+1,high);
+   }
+   else{
+    return cross_max_array( A,beg,mid,high);
+   }
+}
+int maximum_sum_array(int A,int low,int high){
+    if (low<high){
+        int mid=(low+high)/2;
+    }
+    // int (left_low,left_high,left_sum)=maximum_sum_array(A,low,mid);
+    // int (right_low,right_high,right_sum)=maximum_sum_array(A,mid+1,high);
+    // int (cross_low,cross_high,cross_sum)=cross_max_array( A,beg,mid,high);
+  
+}
+int main(){
+    int A[]={-2, -5, 6, -2, -3, 1, 5, -6};
+    int n=sizeof(A[])/sizeof(A[0]);
+      int max_sum = maximum_sum_array(A, 0, n - 1);
+      
+    printf("Maximum contiguous sum is %d\n", max_sum);
+    return 0;
+
+
+}
