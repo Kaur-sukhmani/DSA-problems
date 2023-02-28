@@ -13,6 +13,6 @@ int main(){
     int coins[]={2,5,3};
     int n=3;
     int sum=5;
-    countways(coins,n,sum);
+    cout<<countways(coins,n,sum);
     return 0;
 }
