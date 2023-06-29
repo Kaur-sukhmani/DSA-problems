@@ -1,0 +1,144 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+class TrieNode{
+    public:
+    char data;
+    bool isTerminal;   
+    TrieNode* children[26];  
+
+    //constructor
+    TrieNode(char key) {
+        data=key;
+        for(int i=0;i<26;i++){
+            children[i]=NULL;
+        }
+        isTerminal=false;
+    } 
+};
+//insertion of the word 
+class Trie{
+    public:
+    TrieNode* root;
+    Trie(){
+        root=new TrieNode('\0');
+    }
+
+    void insertutil(TrieNode* root , string word){
+     if(word.length() == 0){
+        root->isTerminal=true;
+        return;
+     }
+     //assumption , word will be in caps 
+     int index=word[0]-'A';
+     TrieNode* child;
+
+     //present case
+     if(root->children[index]!=NULL){
+        child=root->children[index];
+     }
+     else{
+        //absent
+        child = new TrieNode(word[0]);
+        root->children[index]=child;
+     }
+     //recursion
+     insertutil(child,word.substr(1));
+    }
+    
+
+    void insertWord(string word){
+        insertutil(root,word);
+    }
+
+
+
+   // to SEARCH for an letter
+   bool searchUtil(TrieNode* root, string word){
+    //base case
+    if(word.length() == 0 ){
+     return root->isTerminal;
+    }
+    int index=word[0]-'A';
+    TrieNode* child;
+    //present
+    if( root->children[index]!=NULL){
+      child=root->children[index];
+    }
+    else{
+        //agar voh root ka childrenn ka jo bhi index hain agar voh nahi hai toh return false 
+        return false;
+    }
+    //recursive
+    return searchUtil(child,word.substr(1));
+    }
+
+
+    bool searchword(string word){
+        return searchUtil(root,word);
+        }
+        bool deleteWordUtil(TrieNode* node, string word, int pos) {
+        if (pos == word.length()) {
+            if (node->isTerminal) {
+                node->isTerminal = false;
+                return true;
+            }
+            return false;
+        }
+
+        int index = word[pos] - 'A';
+        TrieNode* child = node->children[index];
+
+        if (child == NULL) {
+            // Word not found
+            return false;
+        }
+
+        bool canDelete = deleteWordUtil(child, word, pos + 1);
+
+        if (canDelete) {
+            delete child;
+            node->children[index] = NULL;
+
+            // Check if the current node has any other children or is marked as terminal
+            for (int i = 0; i < 26; i++) {
+                if (node->children[i] != NULL || node->isTerminal) {
+                    return canDelete;
+                }
+            }
+
+            // If there are no other children and the current node is not marked as terminal, delete the node
+            delete node;
+        }
+
+        return canDelete;
+    }
+
+    bool deleteWord(string word) {
+        return deleteWordUtil(root, word, 0);
+    }
+};
+
+
+int main()
+{
+    Trie* t = new Trie();
+    t->insertWord("abcde");
+    t->insertWord("insert");
+    t->insertWord("hogya");
+    t->insertWord("!!");
+    cout << "present or not " << t->searchword("insert") << endl;
+    cout << "Deleting 'insert'..." << endl;
+bool deleted = t->deleteWord("insert");
+
+if (deleted) {
+    cout << "Word deleted successfully." << endl;
+}
+else {
+    cout << "Word not found." << endl;
+}
+
+cout << "Present or not: " << t->searchword("insert") << endl; 
+return 0;
+}
