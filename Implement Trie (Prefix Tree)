@@ -1,0 +1,111 @@
+// #include<iostream>
+// #include<bits/stdc++.h>
+// using namespace std;
+
+class TrieNode{
+    public:
+    char data;
+    bool isTerminal;   
+    TrieNode* child[26];  
+
+    //constructor
+    TrieNode(char key) {
+        data=key;
+        for(int i=0;i<26;i++){
+            child[i]=NULL;
+        }
+        isTerminal=false;
+    } 
+};
+class Trie {
+public:
+TrieNode*root;
+    Trie() {
+           root = new TrieNode('\n');
+       } 
+
+// class Trie {
+// public:
+// TrieNode*root;  // this trieNode * class will store 3 val a above ;
+// Trie() {
+//     root = new TrieNode('\n');
+// }
+
+    
+    void insertutil(TrieNode* root,string word){
+        TrieNode *store;
+
+        if(word.length()==0){
+            root->isTerminal=true;
+            return;
+        }
+        int index=word[0]-'a';
+        //already present or not?
+        if(root->child[index]!=NULL){
+            //confirm present 
+            store=root->child[index];
+        }
+        else{
+            //absent 
+            store=new TrieNode(word[0]);
+            root->child[index]=store;
+        }
+        //recursion
+        insertutil(store,word.substr(1));
+    }
+    void insert(string word) {
+        insertutil(root,word);
+    }
+    bool searchutil(TrieNode* root,string word){
+        
+        if(word.length()==0){
+            return root->isTerminal;
+        }
+         int index=word[0]-'a';
+          TrieNode *store;
+         //present 
+        
+         if(root->child[index]!=NULL){
+             store=root->child[index];
+         }
+         else{
+             return false;
+         }
+         //recursice
+         return searchutil(store,word.substr(1));
+    }
+
+    bool search(string word) {
+        return searchutil(root,word);
+    }
+
+
+    
+    bool startswithutil(TrieNode* root,string prefix){
+        if (prefix.length()==0){
+            return true;
+        }
+        TrieNode*store;
+       int index=prefix[0]-'a';
+         //present 
+        
+         if(root->child[index]!=NULL){
+             store=root->child[index];
+         }
+         else
+             return false;
+         //recursice
+         return  startswithutil(store,prefix.substr(1));
+    }
+    bool startsWith(string prefix) {
+        return startswithutil(root,prefix);
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
